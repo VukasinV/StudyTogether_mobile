@@ -8,6 +8,7 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { ApiService } from '../services/api.service';
 import { AuthInterceptor } from '../services/auth.interceptor';
+import { TokenService } from '../services/token.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -37,6 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
     SplashScreen,
     ApiService,
     AuthInterceptor,
+    TokenService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NgForm } from "@angular/forms";
 import { ApiService } from "../../services/api.service";
 import { HomePage } from '../home/home';
+import { TokenService } from '../../services/token.service';
 
 /**
  * Generated class for the LoginPage page.
@@ -18,7 +19,7 @@ import { HomePage } from '../home/home';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private api:ApiService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private api:ApiService, private tokenService: TokenService) {
   }
 
   ionViewDidLoad() {
@@ -28,7 +29,7 @@ export class LoginPage {
   onLogin(forma: NgForm) {
     this.api.login(forma.value.username, forma.value.password).subscribe(
       data => {
-        localStorage.setItem('token', data.toString());
+        this.tokenService.setToken(data.toString());
         this.navCtrl.setRoot(HomePage);
       }, 
       error => {
